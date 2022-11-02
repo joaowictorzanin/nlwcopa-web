@@ -1,0 +1,23 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator erd{
+  provider = "prisma-erd-generator"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Pool {
+  id String @id @default(cuid()) //@id diz que é primary key e cuid() é um gerador de id unico
+  title String 
+  code String  @unique //diz que o campo é unico e que nao pode inserir dois boloes com o mesmo codigo
+  createAt DateTime @default(now()) //set a data com o tempo atual
+  
+}
